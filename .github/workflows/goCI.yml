@@ -26,8 +26,9 @@ jobs:
     - name: Check go version and init
       run: |
         go version
-        go mod init
-        go mod tidy
+        go env
+        # go mod init
+        # go mod tidy
     
 
     - name: Checkout
