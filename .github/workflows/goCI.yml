@@ -23,6 +23,10 @@ jobs:
         # Used to pull node distributions from go-versions.  Since there's a default, this is typically not supplied by the user.
         token: ${{ github.token }}
         
+    - name: Get debs
+      run: |
+        go get -v github.com/tebeka/go2xunit
+        
     - name: Check go version and init
       run: |
         go version
@@ -39,11 +43,33 @@ jobs:
         path: bensThing
         token: ${{ secrets.BENS_THING }}
       
-    - name: run tests
+    - name: Run tests
       run: |
         go test -v .
         go run .
 
+    - name: Test to XML
+      uses: EnricoMi/publish-unit-test-result-action@v1.5
+      if: always(0
+      with:
+        files: report.xml
+    
+    - name: Create Issue Action
+      # You may pin to the exact commit or the version.
+      # uses: nashmaniac/create-issue-action@b0c9250ca328a30c2989c7358bc4833f77953af2
+      uses: nashmaniac/create-issue-action@v1.1
+      with:
+        # Title of the issue
+        title: Build Failed
+        # Token of the user that creates the issue
+        token: ${{secrets.GITHUB_TOKEN}}
+        # Labels of the issue
+        labels: workflow-failed
+        # Assignees of the issue
+        assignees: ${{github.actor}}
+        # Body of the issue
+        body: Workflow failed for commit ${{github.sha}}
+    
     - name: Create Release
       id: create_release
       uses: actions/create-release@latest
