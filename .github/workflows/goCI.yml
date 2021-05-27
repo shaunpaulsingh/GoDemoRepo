@@ -26,3 +26,7 @@ jobs:
     - name: Check go version
       run: |
         go version
+
+    - name: Checkout
+      uses: action/checkout@v2
+      
