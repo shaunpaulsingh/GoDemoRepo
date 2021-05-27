@@ -50,7 +50,7 @@ jobs:
 
     - name: Test to XML
       uses: EnricoMi/publish-unit-test-result-action@v1.5
-      if: always(0
+      if: always()
       with:
         files: report.xml
     
