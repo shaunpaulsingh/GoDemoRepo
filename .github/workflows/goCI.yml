@@ -54,7 +54,7 @@ jobs:
       with:
         files: test-results/**/*.xml
     
-    - if: ${{failure}}
+    - if: ${{failure()}}
       name: Create Issues
       # You may pin to the exact commit or the version.
       # uses: nashmaniac/create-issue-action@b0c9250ca328a30c2989c7358bc4833f77953af2
