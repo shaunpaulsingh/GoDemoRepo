@@ -43,3 +43,15 @@ jobs:
       run: |
         go test -v .
         go run .
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@latest
+      
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: |
+          Release ${{ github.ref }}
+        body: ${{ steps.Changelog.outputs.changelog }}
+        draft: false
+        prerelease: false
