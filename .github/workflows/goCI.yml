@@ -32,6 +32,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       
+    - name: Checkout private
+      uses: actions/checkout@v2
+      with:
+        repository: lowkh2/GoSchoolRemoteExample
+        token: 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
+      
     - name: run tests
       run: |
         go test -v .
