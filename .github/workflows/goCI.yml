@@ -80,7 +80,7 @@ jobs:
       with:
         tag_name: ${{ github.ref }}
         release_name: |
-          Release ${{ github.ref }} ${{ time }} ${{ steps.date.outputs.date }}
+          Release ${{ github.ref }} ${{ steps.date.outputs.date }}
         body: ${{ steps.Changelog.outputs.changelog }}
         draft: false
         prerelease: false
