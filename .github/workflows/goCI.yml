@@ -23,9 +23,12 @@ jobs:
         # Used to pull node distributions from go-versions.  Since there's a default, this is typically not supplied by the user.
         token: ${{ github.token }}
         
-    - name: Check go version
+    - name: Check go version and init
       run: |
         go version
+        go mod init
+        go mod tidy
+    
 
     - name: Checkout
       uses: actions/checkout@v2
