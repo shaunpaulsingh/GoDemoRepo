@@ -45,8 +45,8 @@ jobs:
       
     - name: Run tests
       run: |
-        go test -v
         go test -v . | go2xunit > report.xml
+        go test -v .
 
     - name: Publish Unit Test Results
       uses: EnricoMi/publish-unit-test-result-action@v1
@@ -69,5 +69,16 @@ jobs:
         assignees: ${{github.actor}}
         # Body of the issue
         body: Workflow failed for commit ${{github.sha}}
-    
-   
+    - if: ${{success()}}
+      name: Create Release
+      id: create_release
+      uses: actions/create-release@latest
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: |
+          Release ${{ github.ref }}
+        body: ${{ steps.Changelog.outputs.changelog }}
+        draft: false
+        prerelease: false
