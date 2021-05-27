@@ -71,19 +71,7 @@ jobs:
         assignees: ${{github.actor}}
         # Body of the issue
         body: Workflow failed for commit ${{github.sha}}
-    - if: ${{success()}}
-      name: Create Release
-      id: create_release
-      uses: actions/create-release@latest
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: |
-          Release ${{ github.ref }} ${{ steps.date.outputs.date }}
-        body: ${{ steps.Changelog.outputs.changelog }}
-        draft: false
-        prerelease: false
+
 
     - if: ${{ success() }}
       name: Create download directory
