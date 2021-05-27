@@ -27,8 +27,8 @@ jobs:
       run: |
         go version
         go env
-        # go mod init
-        # go mod tidy
+        # go test ./
+        # go run ./
     
 
     - name: Checkout
