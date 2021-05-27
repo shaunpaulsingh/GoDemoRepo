@@ -36,7 +36,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: lowkh2/GoSchoolRemoteExample
-        token: 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
+        token: ${{ secrets.BENS_THING }}
       
     - name: run tests
       run: |
