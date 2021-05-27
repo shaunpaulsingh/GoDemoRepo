@@ -27,15 +27,15 @@ jobs:
       run: |
         go version
         go env
-        go test .
-        go run .
     
 
     - name: Checkout
       uses: actions/checkout@v2
       
     - name: run tests
-      run: go test -json ./... > test.json
+      run: |
+        go test .
+        go run .
       
     - name: Golang Test Annotations
       # You may pin to the exact commit or the version.
