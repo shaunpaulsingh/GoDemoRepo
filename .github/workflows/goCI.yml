@@ -84,3 +84,24 @@ jobs:
         body: ${{ steps.Changelog.outputs.changelog }}
         draft: false
         prerelease: false
+
+    - if: ${{ success() }}
+      name: Create download directory
+      run: mkdir downloads
+      
+    - name: Prepare Documents
+      run: |
+        mv report.xml ./downloads
+        
+    - if: ${{ success() }}
+      name: Prepare artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: assetDocuments
+        path: downloads
+        
+    - if: ${{ success() }}
+      name: Download Content
+      uses: actions/download-artifact@v2
+      with:
+        name: assetDocuments
