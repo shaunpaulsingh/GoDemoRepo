@@ -30,6 +30,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       
+    - name: run tests
+      run: go test -json ./... > test.json
+      
     - name: Golang Test Annotations
       # You may pin to the exact commit or the version.
       # uses: guyarb/golang-test-annotations@48645c385003e0c362bf954d4018895be76f1d3d
