@@ -53,7 +53,6 @@ jobs:
       if: always()
       with:
         files: report.xml
-    
     - if: ${{failure()}}
       name: Create Issues
       # You may pin to the exact commit or the version.
